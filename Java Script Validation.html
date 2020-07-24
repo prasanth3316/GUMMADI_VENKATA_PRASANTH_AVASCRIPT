@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css " integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<style>
+    form {
+	background: linear-gradient(to right, #5B86E5, #36D1DC);
+    margin: 0 auto;
+    width: 700px;
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    font-family: helvetica;
+    }
+    label {
+    display: inline-block;
+    width: 200px;
+    text-align: right;}
+	div.jumbotron{
+	background: linear-gradient(to right, #F27121, #E94057, #8A2387);
+	}
+	</style>
+	<script type='text/javascript'>
+    	function validate(){
+    		var uname = document.reg.username.value;
+    		var pwd = document.reg.pwd.value;
+    		var phn = document.reg.mobile.value;
+    		var email = document.reg.mail.value;
+			var date = document.reg.date.value;
+    		
+			reda = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+            var reun = new RegExp("^[A-Z][a-z A-Z]*$");
+    		var reem = new RegExp("^[A-Z a-z][a-z A-Z 0-9]*@[A-Z a-z]*.[a-z A-Z]{3}|[a-z A-Z]{2}.[a-z A-Z]{2}$");
+    		var reph = new RegExp("^[0-9]{10}$");
+
+    		var r1 = reun.exec(uname);
+    		var r2 = reem.exec(email);
+    		var r3 = reph.exec(phn);
+			var r4 = date.match(reda);
+			
+    		if(r1 && r2 && r3 && r4 && pwd.length>=8 )
+    		{
+    			alert("All are valid");
+    		}
+    		else{
+    			if(!r1){
+    				alert("Username must start with a Capital letter");
+    				document.reg.username.focus();
+    			}
+    			if(!r2){
+    				alert("Invalid mail");
+    				document.reg.mail.focus();
+    			}
+    			if(!r3){
+    				alert("Invalid Phone number - Should contain only 10 digits");
+    				document.reg.mobile.focus();
+    			}
+				if(!r4){
+    				alert("Invalid DOB - Check format('DD/MM/YYYY')");
+    				document.reg.mobile.focus();
+    			}
+    			if(pwd.length<8)
+    			{
+    				alert("Password must be atleast 8 characters");
+    				document.reg.pwd.focus();
+    			}
+    		}
+    		
+    	}
+    </script>
+</head>
+<body>
+	<div>
+	<div class="jumbotron" style="background-color: #E9D412">
+		<h1 style="text-align: center ; font-family: sans-serif; color: White";> EPAM</h1>
+	</div>
+	<div>
+	<form name="reg" onsubmit="return validate()" method="POST">
+	<table style="width:100%">
+	<tr><td colspan="2" style="text-align:center">
+	<h2 style="text-align:center">Registration Form</h2>
+    </td></tr>
+	<tr><td>
+    <label for="uname"><b>Username:</label>
+	</td><td>
+	<input type="text" name="username" maxlength="20" size="20" placeholder="Enter Username"><br><br>
+    </td></tr><tr><td>
+	<label><b>Password:</label>
+	</td><td>
+	<input type="password" name="pwd" maxlength="18" size="20" placeholder="Enter Password"><br><br>
+    </td></tr><tr><td>
+	<label><b>Mail-id:</label>
+	</td><td>
+	<input type="email" name="mail" size="20" placeholder="Enter Mail id"><br><br>
+    </td></tr><tr><td>
+	<label><b>Mobile:</label>
+	</td><td>
+	<input type="tel" name="mobile" placeholder="Enter Mobile no."><br><br>
+    </td></tr><tr><td>
+	<label><b>Date Of Birth:</label>
+	</td><td>
+	<input type="text" name="date" placeholder="DD/MM/YYYY"><br><br>
+    </td></tr><tr><td colspan="2" style="text-align:center">
+	<input type="submit" value="Submit"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="reset" value="Reset"/>
+	</td></tr>
+	</table>
+</form>
+</div>
+</div>
+</body>
+</html>
